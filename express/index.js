@@ -43,6 +43,10 @@ app.get('/singleProduct/:id',(req,res)=>{
     const {id} = req.params
 
     const productItem = products.find((item) => item.id === Number(id) )
+
+    if(!productItem){
+        res.status(404).send("id not found")
+    }
     res.json(productItem)
 })
 
