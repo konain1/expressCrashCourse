@@ -5,14 +5,19 @@ const app = express()
 
 console.log(__dirname)
 
-app.get("/",(req,res,next)=>{
-    res.send("hello world")
-})
 
-app.get('/files',(req,res,next)=>{
+
+app.get('/contact',(req,res,next)=>{
+    res.sendFile(path.join(__dirname, 'Contact.html'))
+})
+app.get('/',(req,res,next)=>{
 
     res.sendFile(path.join(__dirname, 'index.html'))
 
+})
+app.all('*',(req,res)=>{
+
+    res.send("<h1>Page Not Found</h1>")
 })
 
 
