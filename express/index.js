@@ -25,8 +25,25 @@ app.get('/contact',(req,res,next)=>{
 
 app.get('/api' , (req,res)=>{
 
-    res.json(products)
+    const newItem = products.map((item)=> {
+       const {name,price,id} = item
+       return {name,price,id}
 
+    // return "oneplus" !== item.name  compare by value
+
+
+    })
+
+    res.json(newItem)
+
+})
+
+app.get('/singleProduct/:id',(req,res)=>{
+
+    const {id} = req.params
+
+    const productItem = products.find((item) => item.id === Number(id) )
+    res.json(productItem)
 })
 
 app.all('*',(req,res)=>{
