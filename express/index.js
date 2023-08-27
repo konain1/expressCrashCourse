@@ -50,6 +50,26 @@ app.get('/singleProduct/:id',(req,res)=>{
     res.json(productItem)
 })
 
+app.get('/api/query',(req,res)=>{
+    console.log(req.query)
+    let {search,limit} = req.query
+
+    let filterProducts = [...products]
+
+    if(search){
+
+        filterProducts = filterProducts.slice(0,limit).filter((item)=>{
+            return item.name.toLowerCase().startsWith(search)
+        })
+    }
+    
+
+    console.log(filterProducts)
+
+    res.json(filterProducts)
+})
+
+
 app.all('*',(req,res)=>{
 
     res.send("<h1>Page Not Found</h1>")
