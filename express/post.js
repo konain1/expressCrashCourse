@@ -8,6 +8,7 @@ const path = require('path')
 
 app.use(express.static('public'))
 
+// read the request.body    all elements
 app.use(express.urlencoded({extended:false}))
 
 let books = [
