@@ -39,6 +39,10 @@ app.post('/books',(req,res,next)=>{
         author: req.body.author
     }
 
+    books.push(newBook)
+
+    res.status(201).json(newBook)
+
 })
 
 
