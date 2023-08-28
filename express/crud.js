@@ -31,8 +31,31 @@ app.get('/book',(req,res)=>{
 app.post('/book',(req,res)=>{
 
     let data = req.body
+    books.push(data)
+    data.id = books.length + 1;
 
-    console.log(data)
+    res.status(201).json(books)
+})
+
+app.put('/book/:id',(req,res)=>{
+
+    const id = parseInt(req.params.id)
+
+    const index = books.findIndex( book => book.id === id)
+
+    const updatedData = req.body
+
+
+    
+    if(index !== -1){
+        books[index] = {...updatedData}
+        res.json(books)
+
+
+    }else{
+        res.status(404).json(books)
+    }
+
 })
 
 app.listen(8080)
